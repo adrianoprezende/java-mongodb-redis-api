@@ -13,7 +13,6 @@ This project is an API built using **Java 17, Spring, Mongo DB and Redis.**
 
 - [Setup](#setup)
 - [API Endpoints](#api-endpoints)
-- [Database](#database)
 
 ## Setup
 
