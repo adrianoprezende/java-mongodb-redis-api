@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Perform lint rules. On fail, this will print info about failed tests.
+
+echo "Running pmd lint rules"
+mvn pmd:check pmd:cpd-check
+if [ $? -ne 0 ]; then
+    echo "Aborting push due to linter failed rules."
+    exit 1
+fi
