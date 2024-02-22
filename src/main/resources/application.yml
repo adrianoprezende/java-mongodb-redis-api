@@ -1,32 +1,15 @@
+spring:
+  profiles:
+    active: @spring.profile@
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+
 server:
-  port: 8080
   max-http-header-size: 40KB
   servlet:
     context-path: /catalog-api
-
-spring:
-  redis:
-    host: localhost
-    ssl: 'false'
-    port: '6379'
-    jedis:
-      pool:
-        enabled: true
-        max-active: 8
-        max-idle: 8
-  data:
-    web:
-      pageable:
-        size-parameter: page-size
-        one-indexed-parameters: 'true'
-        page-parameter: page
-    mongodb:
-      uri: mongodb://admin:admin!@localhost:27017/catalog?authSource=admin
-  cache:
-    type: redis
-    redis:
-      time-to-live: '20000'
-
 
 application-version: @project.version@
 

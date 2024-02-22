@@ -1,11 +1,13 @@
 package com.rezende.javamongodbredisapi.usecase.impl;
 
+import com.rezende.javamongodbredisapi.adapter.ProductAdapter;
 import com.rezende.javamongodbredisapi.domain.product.Product;
 import com.rezende.javamongodbredisapi.endpoint.request.ProductRequest;
 import com.rezende.javamongodbredisapi.exception.CategoryNotFoundException;
 import com.rezende.javamongodbredisapi.exception.ProductNotFoundException;
 import com.rezende.javamongodbredisapi.external.repository.ProductRepository;
 import com.rezende.javamongodbredisapi.usecase.CategoryUseCase;
+import com.rezende.javamongodbredisapi.usecase.ProductUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class ProductUseCaseImpl {
+public class ProductUseCaseImpl implements ProductUseCase {
     private final CategoryUseCase categoryUseCase;
     private final ProductRepository repository;
 
@@ -23,24 +25,21 @@ public class ProductUseCaseImpl {
         this.categoryUseCase.getById(productData.categoryId())
                 .orElseThrow(CategoryNotFoundException::new);
 
-        Product newProduct = new Product(productData);
+        Product newProduct = ProductAdapter.INSTANCE.toEntity(productData);
 
         return this.repository.save(newProduct);
     }
 
     public Product update(final String id, final ProductRequest productData) {
+        Product product = this.repository.findById(id)
+                .orElseThrow(ProductNotFoundException::new);
+
         this.categoryUseCase.getById(productData.categoryId())
                 .orElseThrow(CategoryNotFoundException::new);
 
-        Product product = new Product(productData);
-        product.setId(id);
+        ProductAdapter.INSTANCE.toUpdatedEntity(product, productData);
 
-        try {
-            return this.repository.save(product);
-        } catch (Exception e) {
-            log.error("Error on update product", e);
-            throw new ProductNotFoundException();
-        }
+        return this.repository.save(product);
     }
 
     public void delete(final String id) {

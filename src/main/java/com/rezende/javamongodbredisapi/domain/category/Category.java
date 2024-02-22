@@ -24,10 +24,4 @@ public class Category {
     private String title;
     private String description;
     private String ownerId;
-
-    public Category(CategoryRequest categoryDTO) {
-        this.title = categoryDTO.title();
-        this.description = categoryDTO.description();
-        this.ownerId = categoryDTO.ownerId();
-    }
 }

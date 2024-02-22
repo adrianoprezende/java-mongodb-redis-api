@@ -1,5 +1,6 @@
 package com.rezende.javamongodbredisapi.usecase.impl;
 
+import com.rezende.javamongodbredisapi.adapter.CategoryAdapter;
 import com.rezende.javamongodbredisapi.domain.category.Category;
 import com.rezende.javamongodbredisapi.endpoint.request.CategoryRequest;
 import com.rezende.javamongodbredisapi.external.repository.CategoryRepository;
@@ -20,7 +21,7 @@ public class CategoryUseCaseImpl implements CategoryUseCase {
     private final CategoryRepository repository;
 
     public Category insert(final CategoryRequest categoryData) {
-        Category newCategory = new Category(categoryData);
+        Category newCategory = CategoryAdapter.INSTANCE.toEntity(categoryData);
 
         return this.repository.save(newCategory);
     }
@@ -30,10 +31,7 @@ public class CategoryUseCaseImpl implements CategoryUseCase {
         Category category = this.repository.findById(id)
                 .orElseThrow(CategoryNotFoundException::new);
 
-        category.setDescription(categoryData.description());
-        category.setTitle(categoryData.title());
-        category.setOwnerId(categoryData.ownerId());
-        category.setId(id);
+        CategoryAdapter.INSTANCE.toUpdatedEntity(category, categoryData);
 
         return this.repository.save(category);
     }

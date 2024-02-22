@@ -27,12 +27,4 @@ public class Product {
     private String ownerId;
     private Integer price;
     private String category;
-
-    public Product(ProductRequest data) {
-        this.title = data.title();
-        this.description = data.description();
-        this.ownerId = data.ownerId();
-        this.price = data.price();
-        this.category = data.categoryId();
-    }
 }

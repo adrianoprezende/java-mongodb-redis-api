@@ -28,7 +28,7 @@ docker compose up -d
 
 4. Acess mongo express via: http://localhost:8086.
 
-5. Log with dev:dev! and create a database called 'catalog'.
+5. Log with admin:pass and create a database called 'catalog'.
 
 6. Start the application with Maven
 
@@ -37,12 +37,41 @@ docker compose up -d
 ## API Endpoints
 The API provides the following endpoints:
 
-**API PRODUCT**
-```markdown
-POST catalog-api/api/product
-GET catalog-api/api/product
-PUT catalog-api/api/product/{id}
-DELETE catalog-api/api/product/{id}
+**API PRODUCTS**
+* Create Product
+``` bash
+curl --location --request POST 'http://localhost:8080/catalog-api/api/products' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "title": "Hamburguer do Futuro", 
+    "description": "280g de Hamburguer Vegetal", 
+    "ownerId": "12345678", 
+    "price": "132", 
+    "categoryId": "65d13b447698b50ade0d1395"
+}'
+```
+
+* List Products
+``` bash
+curl --location --request GET 'http://localhost:8080/catalog-api/api/products'
+```
+
+* Update Product
+``` bash
+curl --location --request PUT 'http://localhost:8080/catalog-api/api/products/65d69ecfe8faa649124c2002' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "title": "Hamburguer do Futuro", 
+    "description": "280g de Hamburguer Vegetal", 
+    "ownerId": "12345678", 
+    "price": "145", 
+    "categoryId": "65d13b447698b50ade0d1395"
+}'
+```
+
+* Delete Product
+``` bash
+curl --location --request DELETE 'http://localhost:8080/catalog-api/api/products/65d69ecfe8faa649124c2002'
 ```
 
 **API CATEGORY**
