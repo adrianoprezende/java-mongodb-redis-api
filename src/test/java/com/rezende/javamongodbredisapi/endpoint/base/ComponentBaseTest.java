@@ -32,10 +32,6 @@ public class ComponentBaseTest {
 
     private static final int MONGO_PORT = 27017;
     private static final int REDIS_PORT = 6379;
-
-    @Autowired
-    private Environment env;
-
     private static RedisServer redis = RedisServer.newRedisServer(REDIS_PORT);
 
 
