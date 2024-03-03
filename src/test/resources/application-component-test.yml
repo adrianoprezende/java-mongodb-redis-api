@@ -1,0 +1,59 @@
+server:
+  port: 8080
+  max-http-header-size: 40KB
+  servlet:
+    context-path: /catalog-api
+
+application-version: 1.0.0-COMPONENT-TEST
+
+filter:
+  ignoredUrisRegex: /swagger-ui.*,/swagger-resources.*,/actuator.*
+
+spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+
+  data:
+    web:
+      pageable:
+        size-parameter: page-size
+        one-indexed-parameters: 'true'
+        page-parameter: page
+
+    mongodb:
+      host: ${MONGO_HOST:localhost}
+      port: ${MONGO_PORT:27017}
+      uri: mongodb://${MONGO_USERNAME:admin}:${MONGO_PASSWORD:admin!}@${MONGO_HOST:localhost}:${MONGO_PORT:27017}/catalog?authSource=admin
+
+    redis:
+      host: ${REDIS_HOST:localhost}
+      ssl:
+        enabled: false
+      password: ${REDIS_PASSWORD}
+      port: ${REDIS_PORT:'6379'}
+      jedis:
+        pool:
+          enabled: true
+          max-active: 8
+          max-idle: 8
+
+  cache:
+    type: redis
+    redis:
+      time-to-live: 20000
+
+gateway:
+  host: api.gateway.test
+clock:
+  timezone: UTC
+
+logging:
+  level:
+    org.springframework.data: DEBUG
+    io.lettuce.core: DEBUG
+
+
+
+

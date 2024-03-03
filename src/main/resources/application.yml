@@ -13,6 +13,9 @@ server:
 
 application-version: @project.version@
 
+filter:
+  ignoredUrisRegex: /swagger-ui.*,/swagger-resources.*,/actuator.*
+
 
 
 

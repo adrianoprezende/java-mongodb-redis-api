@@ -2,6 +2,8 @@ package com.rezende.javamongodbredisapi.usecase;
 
 import com.rezende.javamongodbredisapi.domain.product.Product;
 import com.rezende.javamongodbredisapi.endpoint.request.ProductRequest;
+import com.rezende.javamongodbredisapi.endpoint.request.UrlMeta;
+import com.rezende.javamongodbredisapi.endpoint.response.Response;
 
 import java.util.List;
 
@@ -12,5 +14,5 @@ public interface ProductUseCase {
 
     void delete(String id);
 
-    List<Product> getAll();
+    Response<Product> getAll(UrlMeta urlMeta);
 }

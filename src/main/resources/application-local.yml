@@ -2,27 +2,34 @@ server:
   port: 8080
 
 spring:
-  redis:
-    host: localhost
-    ssl: 'false'
-    port: '6379'
-    jedis:
-      pool:
-        enabled: true
-        max-active: 8
-        max-idle: 8
   data:
     web:
       pageable:
         size-parameter: page-size
         one-indexed-parameters: 'true'
         page-parameter: page
+
     mongodb:
       uri: mongodb://admin:admin!@localhost:27017/catalog?authSource=admin
+
+    redis:
+      host: localhost
+      ssl: 'false'
+      port: '6379'
+      jedis:
+        pool:
+          enabled: true
+          max-active: 8
+          max-idle: 8
   cache:
     type: redis
     redis:
-      time-to-live: '20000'
+      time-to-live: 20000
+
+gateway:
+  host: localhost
+clock:
+  timezone: UTC
 
 
 

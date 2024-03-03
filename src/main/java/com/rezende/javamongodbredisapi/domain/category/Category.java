@@ -10,6 +10,9 @@ import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Document(collection = "categories")
 @Getter
 @Setter
@@ -18,7 +21,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @CompoundIndexes({
         @CompoundIndex(name = "ownerId_idx", def = "{'ownerId' : 1}")
 })
-public class Category {
+public class Category implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -6192744520834875254L;
+
     @Id
     private String id;
     private String title;

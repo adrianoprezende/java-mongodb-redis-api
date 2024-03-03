@@ -2,6 +2,8 @@ package com.rezende.javamongodbredisapi.usecase;
 
 import com.rezende.javamongodbredisapi.domain.category.Category;
 import com.rezende.javamongodbredisapi.endpoint.request.CategoryRequest;
+import com.rezende.javamongodbredisapi.endpoint.request.UrlMeta;
+import com.rezende.javamongodbredisapi.endpoint.response.Response;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +15,7 @@ public interface CategoryUseCase {
 
     void delete(String id);
 
-    List<Category> getAll();
+    Response<Category> getAll(UrlMeta urlMeta);
 
     Optional<Category> getById(String id);
 }
