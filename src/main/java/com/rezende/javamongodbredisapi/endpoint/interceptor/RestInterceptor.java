@@ -2,6 +2,7 @@ package com.rezende.javamongodbredisapi.endpoint.interceptor;
 
 import com.rezende.javamongodbredisapi.domain.exception.handler.ExceptionResponseContextThread;
 import com.rezende.javamongodbredisapi.endpoint.request.RequestInfo;
+import com.rezende.javamongodbredisapi.endpoint.response.ErrorData;
 import com.rezende.javamongodbredisapi.endpoint.response.ErrorResponse;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletResponse;
@@ -57,7 +58,7 @@ public class RestInterceptor implements HandlerInterceptor {
 
             final ErrorResponse errorDataMessage = ExceptionResponseContextThread.getExceptionResponse();
 
-            errorMessage = errorDataMessage!= null ? errorDataMessage.getErrors().toString() : null;
+            errorMessage = errorDataMessage != null ? errorDataMessage.getErrors().stream().map(ErrorData::getDetail).collect(Collectors.joining(",")) : null;
             errorCode = response.getStatus();
         }
 

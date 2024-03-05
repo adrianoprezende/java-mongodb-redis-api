@@ -56,7 +56,7 @@ class CategoryControllerComponentTest extends ComponentBaseTest {
     @DisplayName("Validar Criacao de Categoria")
     void shouldCreateCategory() throws Exception {
         // given
-        final String category = CategoryRequestFixture.getValidChineseCategoryRequest();
+        final String category = CategoryRequestFixture.getValidChineseCategoryJsonRequest();
 
         // when
         final MvcResult mvcResult = mockMvc.perform(post(ENDPOINT)
@@ -84,7 +84,7 @@ class CategoryControllerComponentTest extends ComponentBaseTest {
     @DisplayName("Validar retorno 200 ao Buscar Categorias")
     void shouldReturn200ResponseWhenGetCategories() throws Exception {
         // given
-        final String category = CategoryRequestFixture.getValidChineseCategoryRequest();
+        final String category = CategoryRequestFixture.getValidChineseCategoryJsonRequest();
         final String page = "1";
         final String size = "25";
 
@@ -145,8 +145,8 @@ class CategoryControllerComponentTest extends ComponentBaseTest {
     @DisplayName("Validar retorno 200 ao Atualizar Categoria")
     void shouldReturn200ResponseWhenUpdateCategory() throws Exception {
         // given
-        final String taiCategory = CategoryRequestFixture.getValidChineseCategoryRequest();
-        final String chineseCategory = CategoryRequestFixture.getValidChineseFoodCategoryRequest();
+        final String taiCategory = CategoryRequestFixture.getValidChineseCategoryJsonRequest();
+        final String chineseCategory = CategoryRequestFixture.getValidChineseFoodCategoryJsonRequest();
 
         final MvcResult mvcPostResult = mockMvc.perform(post(ENDPOINT)
                         .contentType("application/json")
@@ -182,8 +182,8 @@ class CategoryControllerComponentTest extends ComponentBaseTest {
     @DisplayName("Validar retorno 204 ao Deletar Categoria")
     void shouldReturn204ResponseWhenDeleteCategory() throws Exception {
         // given
-        final String taiCategory = CategoryRequestFixture.getValidChineseCategoryRequest();
-        final String chineseCategory = CategoryRequestFixture.getValidChineseFoodCategoryRequest();
+        final String taiCategory = CategoryRequestFixture.getValidChineseCategoryJsonRequest();
+        final String chineseCategory = CategoryRequestFixture.getValidChineseFoodCategoryJsonRequest();
 
         final MvcResult mvcPostResult = mockMvc.perform(post(ENDPOINT)
                         .contentType("application/json")

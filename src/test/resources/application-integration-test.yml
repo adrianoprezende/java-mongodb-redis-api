@@ -1,0 +1,12 @@
+server:
+  port: 8080
+  max-http-header-size: 40KB
+  servlet:
+    context-path: /catalog-api
+
+application-version: 1.0.0-INTEGRATION-TEST
+
+gateway:
+  host: api.gateway.test
+clock:
+  timezone: UTC
